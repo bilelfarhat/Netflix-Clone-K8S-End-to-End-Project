@@ -16,26 +16,26 @@ pipeline {
             steps {
                 // Use Docker Hub credentials
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                 }
             }
         }
 
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t netflix .'
+                sh 'sudo docker build -t netflix .'
             }
         }
 
         stage('Tag Docker image') {
             steps {
-                sh 'docker tag netflix bilelfarhat/netflix:latest'
+                sh 'sudo docker tag netflix bilelfarhat/netflix:latest'
             }
         }
 
         stage('Push Docker image to Google Container Registry') {
             steps {
-                sh 'docker push bilelfarhat/netflix:latest'
+                sh 'sudo docker push bilelfarhat/netflix:latest'
             }
         }
 
