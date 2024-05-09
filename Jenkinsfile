@@ -14,9 +14,9 @@ pipeline {
         }
         stage('run Docker') {
             steps {
-                sh 'sudo systemctl start docker'
-                sh 'sudo systemctl enable docker'
-                sh 'sudo usermod -aG docker jenkins'
+                sh 'systemctl start docker'
+                sh 'systemctl enable docker'
+                sh 'usermod -aG docker jenkins'
             }
         }    
         stage('Login to Docker Hub') {
