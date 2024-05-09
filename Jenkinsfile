@@ -18,6 +18,7 @@ pipeline {
                 sh 'sudo systemctl enable docker'
                 sh 'sudo usermod -aG docker jenkins'
             }
+        }    
         stage('Login to Docker Hub') {
             steps {
                 // Use Docker Hub credentials
