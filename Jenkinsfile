@@ -1,5 +1,10 @@
 pipeline {
     agent any
+     tools {
+        jdk 'jdk'
+        nodejs 'nodejs'
+        dockerTool 'docker' // Utilisation de l'outil Docker configuré dans Jenkins
+    }
 
     environment {
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'
