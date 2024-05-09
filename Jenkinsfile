@@ -12,6 +12,12 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/bilelfarhat/DeepLearning-Fruit_Vegetable_Prediction.git'
             }
         }
+        stage('run Docker') {
+            steps {
+                sh 'sudo systemctl start docker'
+                sh 'sudo systemctl enable docker'
+                sh 'sudo usermod -aG docker jenkins'
+            }
         stage('Login to Docker Hub') {
             steps {
                 // Use Docker Hub credentials
