@@ -3,6 +3,7 @@ pipeline {
     tools {
         jdk 'jdk'
         nodejs 'nodejs'
+        docker 'docker'
     }
     stages {
         stage('Checkout repository') {
