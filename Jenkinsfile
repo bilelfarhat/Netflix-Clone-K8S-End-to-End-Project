@@ -1,10 +1,8 @@
 pipeline {
     agent any
     tools {
-        // Define tools to be installed by Jenkins
         jdk 'jdk'
         nodejs 'nodejs'
-        docker 'docker' // Specify Docker as a tool to be installed
     }
     stages {
         stage('Checkout repository') {
@@ -21,19 +19,24 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t netflix .' // Use Docker tool to build the image
+                sh 'sudo docker build -t netflix .'
             }
         }
         stage('Tag Docker image') {
             steps {
-                sh 'docker tag netflix bilelfarhat/netflix:latest' // Use Docker tool to tag the image
+                sh 'sudo docker tag netflix bilelfarhat/netflix:latest'
             }
         }
         stage('Push Docker image to Google Container Registry') {
             steps {
-                sh 'docker push bilelfarhat/netflix:latest' // Use Docker tool to push the image
+                sh 'sudo docker push bilelfarhat/netflix:latest'
             }
         }
+        // stage('SonarQube analysis') {
+        //     steps {
+        //         sh 'sonar-scanner'
+        //     }
+        // }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
